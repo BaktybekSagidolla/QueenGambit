@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: white;
+      }
+
+      h3 {
+        position: relative;
+        font-size: 20px;
+        color: #f9f9f9;
+        letter-spacing: 1px;
+        font-weight: 500;
+        margin-bottom: 5px;
+      }
+
+      #form {
+        position: relative;
+      }
+
+      #form #email {
+        width: 300px;
+        background: #292929;
+        outline: none;
+        border: none;
+        padding: 10px;
+        border-radius: 6px;
+        color: #fff;
+        font-style: 18px;
+      }
+
+      #form #inputBox {
+        position: relative;
+      }
+
+      #text {
+        display: block;
+        color: #000;
+        font-weight: 300;
+        font-style: italic;
+        padding: 5px;
+      }
+
+      #form.invalid .inputBox::before {
+        content: '';
+        position: absolute;
+        right: 12px;
+        top: 10px;
+        width: 24px;
+        height: 24px;
+        background: url(images/invalid.png);
+        background-size: cover;
+        z-index: 1000;
+      }
+
+      #form.valid .inputBox::before {
+        content: '';
+        position: absolute;
+        right: 12px;
+        top: 10px;
+        width: 24px;
+        height: 24px;
+        background: url(images/valid.png);
+        background-size: cover;
+        z-index: 1000;
+      }
+
+      /* #form #nickname {
+      margin-top: 10%;
+      width: 300px;
+      background: black;
+      outline: none;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      color: #fff;
+      font-style: 18px;
+      color: white;
+    }
+
+    #nicknameText {
+      display: block;
+      color: #000;
+      font-weight: 300;
+      font-style: italic;
+      padding: 5px;
+    }
+
+    #form.invalid .nickname::before {
+      content: "";
+      position: absolute;
+      right: 12px;
+      top: 215px;
+      width: 24px;
+      height: 24px;
+      background: url(../images/invalid.png);
+      background-size: cover;
+      z-index: 1000;
+    }
+
+    #form.valid .nickname::before {
+      content: "";
+      position: absolute;
+      right: 12px;
+      top: 215px;
+      width: 24px;
+      height: 24px;
+      background: url(../images/valid.png);
+      background-size: cover;
+      z-index: 1000;
+    } */
+
+      #form #password-input {
+        margin-top: 10%;
+        width: 300px;
+        background: #292929;
+        outline: none;
+        border: none;
+        padding: 10px;
+        border-radius: 6px;
+        color: #fff;
+        font-style: 18px;
+      }
+
+      #passwordText {
+        display: block;
+        color: #000;
+        font-weight: 300;
+        font-style: italic;
+        padding: 5px;
+      }
+
+      #form.invalid .password::before {
+        content: '';
+        position: absolute;
+        right: 12px;
+        top: 115px;
+        width: 24px;
+        height: 24px;
+        background: url(images/invalid.png);
+        background-size: cover;
+        z-index: 1000;
+      }
+
+      #form.valid .password::before {
+        content: '';
+        position: absolute;
+        right: 12px;
+        top: 115px;
+        width: 24px;
+        height: 24px;
+        background: url(images/valid.png);
+        background-size: cover;
+        z-index: 1000;
+      }
+
+      #formContainer {
+        position: relative;
+      }
+
+      #bull {
+        position: relative;
+        bottom: 20%;
+        left: 8%;
+        width: 260px; /* Adjust the width and height as needed */
+        height: 250px;
+        z-index: 1; /* Ensure the photo is in front of other elements */
+      }
+
+      #submit {
+        margin-top: 5%;
+        padding: 10px 30px;
+        background-color: black;
+        color: white;
+        border-radius: 12px;
+      }
+    </style>
+    <div class="container" id="formContainer">
+      <img id="bull" src="images/the-queens-gambit%20(1).jpg" />
+      <form id="form" action="index.html">
+        <div class="inputBox">
+          <input
+            type="text"
+            name=""
+            id="email"
+            placeholder="Enter E-mail"
+            onkeydown="validation()"
+          />
+          <span id="text"></span>
+        </div>
+
+        <!-- <div class="nickname">
+          <input
+            type="text"
+            name=""
+            id="nickname"
+            placeholder="Enter nickname"
+            onkeydown="validation()"
+          />
+          <span id="nicknameText"></span>
+        </div> -->
+        <div
+          class="spinner-border text-primary"
+          style="width: 3rem; height: 3rem; display: none"
+          role="status"
+        >
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div
+          class="spinner-grow text-primary"
+          style="width: 3rem; height: 3rem; display: none"
+          role="status"
+        >
+          <span class="sr-only">Loading...</span>
+        </div>
+
+        <div class="password">
+          <input
+            type="password"
+            id="password-input"
+            placeholder="Enter password"
+            name="password"
+            onkeydown="validation()"
+          />
+          <span id="passwordText"></span>
+          <label
+            ><input type="checkbox" class="password-checkbox" /> Show
+            password</label
+          >
+        </div>
+
+        <input
+          href="mainHTML.html"
+          type="submit"
+          value="Submit"
+          id="submit"
+          onclick=""
+        />
+      </form>
+    </div>
+    <script>
+      $('body').on('click', '.password-checkbox', function () {
+        if ($(this).is(':checked')) {
+          $('#password-input').attr('type', 'text');
+        } else {
+          $('#password-input').attr('type', 'password');
+        }
+      });
+      var verify = true;
+
+      function validation() {
+        var form = document.getElementById('form');
+
+        var email = document.getElementById('email').value;
+        var text = document.getElementById('text');
+        var emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+        // var nickname = document.getElementById("nickname").value;
+        // var nicknameText = document.getElementById("nicknameText");
+        // var nicknamePattern = /^[^0-9])([\w a-z A-Z 0-9][^@#]/;
+
+        var password = document.getElementById('password-input').value;
+        var passwordText = document.getElementById('passwordText');
+        var passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+
+        if (email.match(emailPattern)) {
+          form.classList.add('valid');
+          form.classList.remove('invalid');
+          text.innerHTML = 'Email is valid';
+          text.style.color = '#00ff00';
+          verify = true;
+        } else {
+          form.classList.remove('valid');
+          form.classList.add('invalid');
+          text.innerHTML = 'Please enter valid email';
+          text.style.color = '#ff0000';
+          verify = false;
+        }
+
+        // if (nickname.match(nicknamePattern)) {
+        //   form.classList.add("valid");
+        //   form.classList.remove("invalid");
+        //   nicknameText.innerHTML = "Email is valid";
+        //   nicknameText.style.color = "#00ff00";
+        //   verify = true;
+        // } else {
+        //   form.classList.remove("valid");
+        //   form.classList.add("invalid");
+        //   nicknameText.innerHTML = "Please enter valid email";
+        //   nicknameText.style.color = "#ff0000";
+        //   verify = false;
+        // }
+
+        if (password.match(passwordPattern)) {
+          form.classList.add('valid');
+          form.classList.remove('invalid');
+          passwordText.innerHTML = 'Password is valid';
+          passwordText.style.color = '#00ff00';
+          verify = true;
+        } else {
+          form.classList.remove('valid');
+          form.classList.add('invalid');
+          passwordText.innerHTML = 'Please enter valid password';
+          passwordText.style.color = '#ff0000';
+          verify = false;
+        }
+
+        return verify;
+      }
+
+      document.getElementById('submit').addEventListener('click', function () {
+        if (validation()) {
+          alert('Form validated successfully!');
+          registerAccount();
+          toggleForm();
+        }
+      });
+
+      function registerAccount() {
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password-input').value;
+
+        var account = {
+          email: email,
+          password: password
+        };
+        var accountJSON = JSON.stringify(account);
+
+        localStorage.setItem(email, accountJSON);
+      }
+
+      function toggleForm() {
+        var loginForm = document.getElementById('login');
+        var registrationForm = document.querySelector('#form');
+        var modal = document.getElementById('myModal');
+
+        if (registrationForm.style.display == 'none') {
+          loginForm.style.display = 'none';
+          modal.style.visibility = 'hidden';
+        } else {
+          loginForm.style.display = 'block';
+        }
+      }
+
+      function login() {
+        var loginEmail = document.getElementById('exampleInputEmail1').value;
+        var loginPassword = document.getElementById(
+          'exampleInputPassword1'
+        ).value;
+
+        var accountJSON = localStorage.getItem('account');
+        var KitareCBT = JSON.parse(localStorage.getItem('KitareCBT'));
+        var MelchiorCBT = JSON.parse(localStorage.getItem('MelchiorCBT'));
+        if (accountJSON) {
+          var account = JSON.parse(accountJSON);
+
+          if (
+            loginEmail === account.email &&
+            loginPassword === account.password
+          ) {
+            alert('Successful!');
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('currentLogin', 'user');
+          } else if (
+            loginEmail === KitareCBT.email &&
+            loginPassword === KitareCBT.password
+          ) {
+            alert('Successful!');
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('currentLogin', 'kitare');
+          } else if (
+            loginEmail === MelchiorCBT.email &&
+            loginPassword === MelchiorCBT.password
+          ) {
+            alert('Successful!');
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('currentLogin', 'melchior');
+          } else if (
+            loginEmail === 'admin@admin.com' &&
+            loginPassword === 'root'
+          ) {
+            alert('Successful!');
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('currentLogin', 'admin');
+          } else {
+            alert('Error. Please check correctness of account.');
+          }
+        } else {
+          alert('Account not found. Please sign up.');
+        }
+      }
+    </script>
+  </body>
+</html>

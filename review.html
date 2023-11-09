@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Queens Gambit</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="https://i.pinimg.com/originals/93/b0/83/93b0832b183c8fd013c8606878426966.png"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .tab-content {
+            display: none;
+        }
+
+        .active-tab {
+            display: block;
+        }
+
+        button {
+            cursor: pointer;
+            width: 10px;
+            height: 10px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <!-- Your existing header content here -->
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a href="#" class="logo">chess<span>.</span></a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="products.html">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="review.html">Review</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="location.html">Location</a>
+                </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="icons">
+        <a href="#" class="fas fa-heart"></a>
+        <a href="cart.html" class="fas fa-shopping-cart"></a>
+        <a href="login.html" class="fas fa-user"></a>
+    </div>
+
+</header>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+
+<!--SECTION REVIEW-->
+<section class="review" id="review" >
+    <h1 class="heading"> <span>comments</span></h1>
+    <div class="box-container">
+        <!-- Reviews will be dynamically added here using JavaScript -->
+    </div>
+</section>
+
+<!--SECTION FOUNDER-->
+<section class="founder">
+    <!-- This section will be populated using JavaScript -->
+</section>
+
+<!--SECTION FOOTER-->
+<section class="footer">
+    <div class="box-container">
+        <div class="box">
+            <h3>quick lins</h3>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#products">Products</a>
+            <a href="#review">Review</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+        <div class="box">
+            <h3>extra lins</h3>
+            <a href="#">my account</a>
+            <a href="#">my order</a>
+            <a href="#">my favorite</a>
+        </div>
+
+        <div class="box">
+            <h3>locations</h3>
+            <a href="#">Kazakhstan</a>
+            <a href="#">USA</a>
+            <a href="#">Japan</a>
+            <a href="#">France</a>
+            <a href="#">Turkey</a>
+        </div>
+
+        <div class="box">
+            <h3>contact info</h3>
+            <a href="#">+7 705 398 12 51</a>
+            <a href="#">221222@astanait.edu.kz</a>
+            <a href="#">Astana, Kazakhstan</a>
+            <img src="https://i.pinimg.com/originals/c2/6a/71/c26a71a5f607ba25f711891dce4b1204.jpg" alt="">
+        </div>
+    </div>
+    <div class="created"> created by <span>Qween's Gambit</span></div>
+</section>
+
+<script>
+    // Define an array of customer reviews
+    const reviews = [
+        {
+            name: "Yersultan Zharylkasyn",
+            rating: 5,
+            text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam ea totam praesentium consectetur dolore vero sed sint delectus non ipsum asperiores animi, voluptate, quae itaque tempore quo veniam officiis corrupti?",
+            photo: "images/photo1699465889%20(2).jpeg"
+        },
+        {
+            name: "Amir Khamzin",
+            rating: 5,
+            text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam ea totam praesentium consectetur dolore vero sed sint delectus non ipsum asperiores animi, voluptate, quae itaque tempore quo veniam officiis corrupti?",
+            photo: "images/photo1699519878.jpeg"
+        },
+        {
+            name: "Marzhan Omar",
+            rating: 5,
+            text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam ea totam praesentium consectetur dolore vero sed sint delectus non ipsum asperiores animi, voluptate, quae itaque tempore quo veniam officiis corrupti?",
+            photo: "images/avatar730285413.jpg"
+        },
+        {
+            name: "Sagidolla Baktybek",
+            rating :4 ,
+            text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam ea totam praesentium consectetur dolore vero sed sint delectus non ipsum asperiores animi, voluptate, quae itaque tempore quo veniam officiis corrupti?",
+            photo: "images/avatar1329470069.jpg"
+        }
+    ];
+
+    // Function to display reviews
+    function displayReviews() {
+        const reviewContainer = document.querySelector(".box-container");
+
+        reviews.forEach((review) => {
+            const reviewBox = document.createElement("div");
+            reviewBox.classList.add("box");
+
+            const stars = document.createElement("div");
+            stars.classList.add("stars");
+            for (let i = 0; i < review.rating; i++) {
+                const starIcon = document.createElement("i");
+                starIcon.classList.add("fas", "fa-star");
+                stars.appendChild(starIcon);
+            }
+
+            const reviewText = document.createElement("p");
+            reviewText.textContent = review.text;
+
+            const userContainer = document.createElement("div");
+            userContainer.classList.add("user");
+
+            const userImage = document.createElement("img");
+            userImage.src = review.photo;
+            userImage.alt = "photo customers";
+
+            const userInfo = document.createElement("div");
+            userInfo.classList.add("user-info");
+
+            const userName = document.createElement("h3");
+            userName.textContent = review.name;
+
+            const userRole = document.createElement("span");
+            userRole.textContent = "happy customer";
+
+            userContainer.appendChild(userImage);
+            userInfo.appendChild(userName);
+            userInfo.appendChild(userRole);
+
+            reviewBox.appendChild(stars);
+            reviewBox.appendChild(reviewText);
+            reviewBox.appendChild(userContainer);
+            reviewBox.innerHTML += '<span class="fas fa-quote-right"></span>';
+
+            reviewContainer.appendChild(reviewBox);
+        });
+    }
+
+    // Call the function to display reviews
+    displayReviews();
+
+    // Define founder details
+    const founderDetails = {
+        name: "",
+        imageSrc: "images/f.jpg",
+        bio: "",
+        profileLink: "https://www.instagram.com/maratovvich__/"
+    };
+
+    // Function to display founder details
+
+    // Function to display founder details
+    function displayFounderDetails() {
+        const founderSection = document.querySelector(".founder");
+
+        const founderBox = document.createElement("div");
+        founderBox.classList.add("box");
+
+        const founderHeading = document.createElement("h2");
+        founderHeading.textContent = "Founder of the Queen's Gambit";
+
+        const cardContainer = document.createElement("div");
+        cardContainer.classList.add("card", "img-fluid");
+        cardContainer.style.width = "500px";
+
+        const founderImage = document.createElement("img");
+        founderImage.classList.add("card-img-top", "founder-photo"); // Add custom class
+        founderImage.src = founderDetails.imageSrc;
+        founderImage.alt = "Founder's image";
+        founderImage.style.width = "100%";
+
+        const cardOverlay = document.createElement("div");
+        cardOverlay.classList.add("card-img-overlay");
+
+        const founderName = document.createElement("h4");
+        founderName.classList.add("card-title");
+        founderName.textContent = founderDetails.name;
+
+        const founderBio = document.createElement("p");
+        founderBio.classList.add("card-text");
+        founderBio.textContent = founderDetails.bio;
+
+        const profileLink = document.createElement("a");
+        profileLink.classList.add("btn", "btn-primary");
+        profileLink.href = founderDetails.profileLink;
+        profileLink.textContent = "See Profile";
+        profileLink.setAttribute("data-toggle", "tooltip"); // Add data-toggle attribute
+        profileLink.setAttribute("title", "Visit Founder's Profile"); // Add title attribute for the tooltip
+
+        cardOverlay.appendChild(founderName);
+        cardOverlay.appendChild(founderBio);
+        cardOverlay.appendChild(profileLink);
+
+        cardContainer.appendChild(founderImage);
+        cardContainer.appendChild(cardOverlay);
+
+        founderBox.appendChild(founderHeading);
+        founderBox.appendChild(cardContainer);
+
+        founderSection.appendChild(founderBox);
+    }
+
+    // Call the function to display founder details
+    displayFounderDetails();
+
+    // Initialize Bootstrap tooltips
+
+    // Initialize Bootstrap tooltips
+    // Event listener to open founder's profile link
+    const profileLink = document.querySelector('.btn-primary');
+    profileLink.addEventListener('click', function (event) {
+        event.preventDefault();
+        window.open(founderDetails.profileLink, '_blank');
+    });
+
+    // Event listener to show a tooltip with the rating when hovering over stars
+    const stars = document.querySelectorAll('.stars .fa-star');
+    stars.forEach((star, index) => {
+        star.addEventListener('mouseover', function () {
+            const tooltip = document.createElement('div');
+            tooltip.classList.add('tooltip');
+            tooltip.textContent = `Rating: ${index + 1}`;
+            this.appendChild(tooltip);
+        });
+
+        star.addEventListener('mouseout', function () {
+            const tooltip = this.querySelector('.tooltip');
+            if (tooltip) {
+                tooltip.remove();
+            }
+        });
+    });
+
+    // Initialize Bootstrap tooltips
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
+</script>
+</body>
+</html>
